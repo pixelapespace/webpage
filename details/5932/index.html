@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelApe #5932 - NFT Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        /* 添加header样式 */
+        .header-image {
+            width: 100%;
+            padding: 20px 0;
+            display: flex;
+            justify-content: flex-start;
+            max-width: 1200px;
+        }
+        
+        .header-image img {
+            width: auto;
+            max-width: 600px;
+            height: auto;
+            max-height: 300px;
+            border: none;
+            box-shadow: none;
+            object-fit: contain;
+        }
+        
+        .nft-detail-container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .nft-frame {
+            width: 500px;
+            height: 400px;
+            margin: 0 auto 30px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            box-shadow: none;
+        }
+        
+        .bg-blue { background-color: #6b8cff; }
+        .bg-green { background-color: #6bff8c; }
+        .bg-orange { background-color: #ffb36b; }
+        .bg-cyan { background-color: #6bffeb; }
+        .bg-purple { background-color: #d66bff; }
+        
+        .nft-image {
+            width: 100%;
+            height: 100%;
+            image-rendering: pixelated;
+            object-fit: contain;
+        }
+        
+        .placeholder-text {
+            color: #666;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .nft-info {
+            background-color: white;
+            padding: 30px;
+            border: 4px solid #ff6b6b;
+            box-shadow: 5px 5px 0 #000;
+            margin-bottom: 20px;
+            width: 500px;
+            margin: 0 auto 20px;
+        }
+        
+        .nft-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 24px;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 #000;
+        }
+        
+        .attributes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .attribute-item {
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 2px solid #333;
+            text-align: left;
+        }
+        
+        .attribute-label {
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 5px;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 3px 3px 0 #000;
+            margin-top: 20px;
+        }
+        
+        .back-btn:hover {
+            background-color: #ff8e8e;
+            transform: translateY(-2px);
+            box-shadow: 5px 5px 0 #000;
+        }
+        
+        @media (max-width: 768px) {
+            .nft-frame {
+                width: 400px;
+                height: 320px;
+            }
+            
+            .nft-info {
+                width: 400px;
+            }
+            
+            .attributes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nft-frame {
+                width: 300px;
+                height: 240px;
+            }
+            
+            .nft-info {
+                width: 300px;
+                padding: 20px;
+            }
+            
+            .header-image img {
+                max-width: 90%;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 添加Header Logo -->
+    <div class="header-image">
+        <img src="../logo.png" alt="PixelApe Logo">
+    </div>
+
+    <div class="nft-detail-container">
+        <div class="nft-frame bg-orange">
+            <img src="5932.png" alt="PixelApe #5932" class="nft-image" onerror="this.style.display='none'; document.getElementById('placeholder-5932').style.display='block';">
+            <div id="placeholder-5932" class="placeholder-text" style="display: none;">
+                Image #5932.png not found
+            </div>
+        </div>
+        
+        <div class="nft-info">
+            <h1 class="nft-title">PIXELAPE #5932</h1>
+            
+            <div class="attributes-grid">
+                <div class="attribute-item">
+                    <div class="attribute-label">Body</div>
+                    <div> Dark Brown</div>
+                </div>
+                <div class="attribute-item">
+                    <div class="attribute-label">Eyes</div>
+                    <div> Dontsee</div>
+                </div>
+                <div class="attribute-item">
+                    <div class="attribute-label">Mouth</div>
+                    <div> Meh</div>
+                </div>
+                <div class="attribute-item">
+                    <div class="attribute-label">Hat</div>
+                    <div> Manbun</div>
+                </div>
+                <div class="attribute-item">
+                    <div class="attribute-label">Clothes</div>
+                    <div> Nowar</div>
+                </div>
+                <div class="attribute-item">
+                    <div class="attribute-label">Earring</div>
+                    <div> </div>
+                </div>
+            </div>
+        </div>
+        
+        <a href="https://pixelape.space" class="back-btn">Back to Collection</a>
+    </div>
+</body>
+</html>
