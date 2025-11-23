@@ -249,27 +249,81 @@
 /* -------------------------------
    Background particle system
    -------------------------------*/
+/* -------------------------------
+   Background particle system
+   双层星星 + 闪烁 + 随机闪烁强度
+   -------------------------------*/
 (function(){
-  const canvas=document.getElementById('bg-canvas');
-  const ctx=canvas.getContext('2d');
-  let W, H, particles;
-  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
-  window.addEventListener('resize',resize);resize();
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
 
-  function init(){
-    particles=[];const count=Math.min(120,Math.floor((W*H)/70000));
-    for(let i=0;i<count;i++)particles.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.6+0.2,vx:(Math.random()-0.5)*0.25,vy:(Math.random()-0.5)*0.25,alpha:Math.random()*0.8+0.1});
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function init() {
+    particles = [];
+    const countLayer1 = Math.min(120, Math.floor((W*H)/70000)); // 大颗慢
+    const countLayer2 = Math.min(80, Math.floor((W*H)/100000)); // 小颗快
+
+    // Layer 1: 大颗慢
+    for(let i=0; i<countLayer1; i++) {
+      particles.push({
+        x: Math.random()*W,
+        y: Math.random()*H,
+        r: Math.random()*1.6+0.8,
+        vx: (Math.random()-0.5)*0.2,
+        vy: (Math.random()-0.5)*0.2,
+        alpha: Math.random()*0.6+0.3,
+        alphaDir: (Math.random()*0.005 + 0.002) * (Math.random()>0.5?1:-1) // 随机闪烁强度
+      });
+    }
+
+    // Layer 2: 小颗快
+    for(let i=0; i<countLayer2; i++) {
+      particles.push({
+        x: Math.random()*W,
+        y: Math.random()*H,
+        r: Math.random()*0.8+0.2,
+        vx: (Math.random()-0.5)*0.6,
+        vy: (Math.random()-0.5)*0.6,
+        alpha: Math.random()*0.8+0.2,
+        alphaDir: (Math.random()*0.02 + 0.005) * (Math.random()>0.5?1:-1) // 随机闪烁强度
+      });
+    }
   }
   init();
 
-  function step(){ctx.clearRect(0,0,W,H);
-    for(const p of particles){p.x+=p.vx;p.y+=p.vy; if(p.x<0)p.x=W; if(p.x>W)p.x=0; if(p.y<0)p.y=H; if(p.y>H)p.y=0;
-      ctx.beginPath();ctx.fillStyle='rgba(180,230,255,'+p.alpha+')';ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
+  function step() {
+    ctx.clearRect(0,0,W,H);
+    for(const p of particles) {
+      // 移动
+      p.x += p.vx;
+      p.y += p.vy;
+      if(p.x < 0) p.x = W;
+      if(p.x > W) p.x = 0;
+      if(p.y < 0) p.y = H;
+      if(p.y > H) p.y = 0;
+
+      // 闪烁
+      p.alpha += p.alphaDir;
+      if(p.alpha > 1) { p.alpha = 1; p.alphaDir *= -1; }
+      if(p.alpha < 0.1) { p.alpha = 0.1; p.alphaDir *= -1; }
+
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(180,230,255,${p.alpha})`;
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fill();
     }
     requestAnimationFrame(step);
   }
   step();
 })();
+
 
 /* -------------------------------
    UI: NFT generation + interactions
