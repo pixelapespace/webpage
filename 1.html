@@ -129,10 +129,22 @@
     }
   }
 
-  /* 手机端响应式 */
+  /* 手机端响应式 - 改为2列更紧凑 */
   @media(max-width:768px){
     .meta-row{
-      grid-template-columns: 1fr; /* 手机端改为1列 */
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+    .mini-panel{
+      padding: 8px;
+    }
+    .mini-panel h4{
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+    .mini-panel p{
+      font-size: 0.8rem;
+      line-height: 1.2;
     }
   }
 
