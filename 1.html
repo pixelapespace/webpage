@@ -37,7 +37,7 @@
   .logo img{height:46px;width:auto;filter:drop-shadow(0 6px 20px rgba(0,200,255,0.16))}
 
   nav{display:flex;gap:18px;align-items:center}
-  nav a{color:var(--muted);font-weight:600;font-size:0.95rem;text-decoration:none}
+  nav a{color:var(--muted);font-weight:600;font-size:0.95rem}
   nav a.btn-outline{padding:8px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.04)}
 
   /* CENTER GLASS CARD LAYOUT */
@@ -105,45 +105,9 @@
 
   footer{padding:28px 0;color:var(--muted);text-align:center}
 
-  /* Mobile Responsive Styles */
-  @media(max-width:980px){
-    .control-panel{grid-template-columns:1fr;gap:20px}
-    .right{order:2}
-    .left{order:1;padding-right:0}
-    .nft-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
-    .hero-title{font-size:24px}
-  }
-  
-  @media(max-width:768px){
-    header{flex-direction:column;gap:20px;text-align:center}
-    nav{flex-wrap:wrap;justify-content:center}
-    .control-panel{padding:20px}
-    .hero-title{font-size:22px}
-    .hero-sub{font-size:0.9rem}
-    .cta-row{flex-direction:column;align-items:stretch}
-    .btn-primary, .btn-ghost{text-align:center;width:100%}
-    .search-box{flex-direction:column}
-    .meta-row{flex-direction:column}
-    .nft-grid{grid-template-columns:repeat(3,1fr)}
-    .nft-image{height:120px}
-    .grid-3{grid-template-columns:1fr;gap:16px}
-    section{padding:50px 0}
-    .section-title{font-size:1.4rem}
-  }
-  
-  @media(max-width:480px){
-    .container{width:95%}
-    .control-panel{padding:16px}
-    .hero-title{font-size:20px}
-    .nft-grid{grid-template-columns:repeat(3,1fr);gap:12px}
-    .nft-image{height:100px}
-    .nft-name{font-size:0.9rem}
-    .nft-id{font-size:0.8rem}
-    .nft-rarity{font-size:0.75rem;padding:4px 8px}
-    .logo img{height:36px}
-    .logo div{font-size:0.9rem}
-    .scanner{display:none} /* Disable scanner effect on small screens */
-  }
+  /* responsive */
+  @media(max-width:980px){.control-panel{grid-template-columns:1fr;}.right{order:2}.left{order:1}.nft-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}}
+
 </style>
 </head>
 <body>
@@ -174,7 +138,7 @@
 
           <div style="display:flex;align-items:center;gap:12px;margin-top:16px">
             <button class="btn-primary" id="browseBtn">Browse Collection</button>
-            <button class="btn-ghost" id="joinBtn">Join Community</button>
+            <a href="#community" class="btn-ghost" id="joinBtn">Join Community</a>
           </div>
 
           <div style="margin-top:18px">
@@ -188,6 +152,12 @@
           <div class="meta-row">
             <div class="mini-panel"><h4>Supply</h4><p>9,888 Total PixelApes</p></div>
             <div class="mini-panel"><h4>Rarity</h4><p>170+ hand-drawn traits distributed algorithmically</p></div>
+			<div class="mini-panel"><h4>Hippy Hat</h4><p>53 apes have the HippyHat</p></div>
+			<div class="mini-panel"><h4>Hoodie Black</h4><p>The Black Hoodie is very rare, with only 39 apes having it</p></div>
+			<div class="mini-panel"><h4>Shirt Of Flames</h4><p>Apes with the Shirt Of Flames tend to be of higher rarity</p></div>
+			<div class="mini-panel"><h4>Meh Higschool</h4><p>The "Meh Highschool" emote also has high rarity</p></div>
+			<div class="mini-panel"><h4>Meh Food</h4><p>The Food in Mouth trait on these 25 apes is likely very rare</p></div>
+			<div class="mini-panel"><h4>Au</h4><p>The 35 apes with golden bodies must be beautiful!</p></div>
           </div>
 
         </div>
@@ -271,8 +241,7 @@
   function generateRandomNFTs(count,maxId){const s=new Set();while(s.size<count){s.add(Math.floor(Math.random()*maxId)+1)}return Array.from(s)}
 
   const grid=document.getElementById('nftGrid');
-  // 改为显示9个NFT
-  const picks=generateRandomNFTs(9,9888);
+  const picks=generateRandomNFTs(8,9888);
 
   picks.forEach(id=>{
     const card=document.createElement('div');card.className='nft-card';card.dataset.id=id;
