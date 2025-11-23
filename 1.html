@@ -313,8 +313,17 @@
   input.addEventListener('input',()=>{input.value=input.value.replace(/[^0-9]/g,''); error.style.display='none'});
 
   // Browse / Join quick links
+  document.getElementById("joinBtn").onclick = function () {
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+    });
+};
+  
+  
   document.getElementById('browseBtn').addEventListener('click',()=>{window.location.href='#nfts'});
   document.getElementById('joinBtn').addEventListener('click',()=>{window.location.href='https://t.me/pixelapenft'});
+  
 
   // Magnetic button effect
   const panel=document.querySelector('.control-panel');
