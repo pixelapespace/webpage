@@ -81,8 +81,8 @@
   .nft-rarity{margin-top:6px;padding:6px 10px;border-radius:10px;background:linear-gradient(90deg,rgba(0,200,255,0.12),rgba(0,120,255,0.12));color:#bff8ff;font-weight:700;font-size:.82rem}
 
   /* floating mini panels beneath */
-  .meta-row{display:flex;gap:12px;margin-top:18px}
-  .mini-panel{flex:1;background:rgba(255,255,255,0.02);border-radius:12px;padding:12px;border:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(6px)}
+  .meta-row{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+  .mini-panel{flex:1;background:rgba(255,255,255,0.02);border-radius:12px;padding:12px;border:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(6px);min-width:160px}
   .mini-panel h4{font-size:.95rem;margin-bottom:6px}
   .mini-panel p{color:var(--muted);font-size:.9rem}
 
@@ -142,7 +142,7 @@
     .nft-rarity{font-size:0.75rem;padding:4px 8px}
     .logo img{height:36px}
     .logo div{font-size:0.9rem}
-    .scanner{display:none} /* Disable scanner effect on small screens */
+    .scanner{display:none}
   }
 </style>
 </head>
@@ -188,6 +188,13 @@
           <div class="meta-row">
             <div class="mini-panel"><h4>Supply</h4><p>9,888 Total PixelApes</p></div>
             <div class="mini-panel"><h4>Rarity</h4><p>170+ hand-drawn traits distributed algorithmically</p></div>
+
+            <div class="mini-panel"><h4>Hippy Hat</h4><p>53 apes have the HippyHat</p></div>
+            <div class="mini-panel"><h4>Hoodie Black</h4><p>The Black Hoodie is very rare, with only 39 apes having it</p></div>
+            <div class="mini-panel"><h4>Shirt Of Flames</h4><p>Apes with the Shirt Of Flames tend to be of higher rarity</p></div>
+            <div class="mini-panel"><h4>Meh Higschool</h4><p>The "Meh Highschool" emote also has high rarity</p></div>
+            <div class="mini-panel"><h4>Meh Food</h4><p>The Food in Mouth trait on these 25 apes is likely very rare</p></div>
+            <div class="mini-panel"><h4>Au</h4><p>The 35 apes with golden bodies must be beautiful!</p></div>
           </div>
 
         </div>
@@ -271,7 +278,6 @@
   function generateRandomNFTs(count,maxId){const s=new Set();while(s.size<count){s.add(Math.floor(Math.random()*maxId)+1)}return Array.from(s)}
 
   const grid=document.getElementById('nftGrid');
-  // 改为显示9个NFT
   const picks=generateRandomNFTs(9,9888);
 
   picks.forEach(id=>{
@@ -297,11 +303,12 @@
   document.querySelectorAll('.faq-item').forEach(item=>item.addEventListener('click',()=>item.classList.toggle('active')));
 
   // Search
-  const searchForm=document.getElementById('nftSearchForm');
   const input=document.getElementById('nftIdInput');
   const error=document.getElementById('errorMessage');
   document.getElementById('searchBtn').addEventListener('click',()=>{
-    const v=parseInt(input.value); if(isNaN(v)||v<1||v>9888){error.style.display='block';return;} window.location.href=`details/${v}/`;
+    const v=parseInt(input.value); 
+    if(isNaN(v)||v<1||v>9888){error.style.display='block';return;} 
+    window.location.href=`details/${v}/`;
   });
   input.addEventListener('input',()=>{input.value=input.value.replace(/[^0-9]/g,''); error.style.display='none'});
 
@@ -309,21 +316,27 @@
   document.getElementById('browseBtn').addEventListener('click',()=>{window.location.href='#nfts'});
   document.getElementById('joinBtn').addEventListener('click',()=>{window.location.href='https://t.me/pixelapenft'});
 
-  // Magnetic button effect (simple) — buttons gently move toward cursor inside the control-panel
+  // Magnetic button effect
   const panel=document.querySelector('.control-panel');
   const magnetables=document.querySelectorAll('.btn-primary, .btn-ghost');
   panel.addEventListener('mousemove',e=>{
     const rect=panel.getBoundingClientRect();
-    const mx=(e.clientX-rect.left)/rect.width; const my=(e.clientY-rect.top)/rect.height;
+    const mx=(e.clientX-rect.left)/rect.width; 
+    const my=(e.clientY-rect.top)/rect.height;
     magnetables.forEach(btn=>{
       const bx=(mx-0.2)*12; const by=(my-0.2)*8; btn.style.transform=`translate(${bx}px,${by}px)`;
     });
   });
   panel.addEventListener('mouseleave',()=>{magnetables.forEach(b=>b.style.transform='translate(0,0)')});
 
-  // Smooth hash scrolling for internal links
+  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
-    const href=a.getAttribute('href'); if(href.startsWith('#')){e.preventDefault();const el=document.querySelector(href);if(el)window.scrollTo({top:el.offsetTop-60,behavior:'smooth'})}
+    const href=a.getAttribute('href'); 
+    if(href.startsWith('#')){
+      e.preventDefault();
+      const el=document.querySelector(href);
+      if(el)window.scrollTo({top:el.offsetTop-60,behavior:'smooth'})
+    }
   }));
 
 })();
