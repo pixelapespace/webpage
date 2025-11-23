@@ -81,10 +81,21 @@
   .nft-rarity{margin-top:6px;padding:6px 10px;border-radius:10px;background:linear-gradient(90deg,rgba(0,200,255,0.12),rgba(0,120,255,0.12));color:#bff8ff;font-weight:700;font-size:.82rem}
 
   /* floating mini panels beneath */
-  .meta-row{display:flex;gap:12px;margin-top:18px}
-  .mini-panel{flex:1;background:rgba(255,255,255,0.02);border-radius:12px;padding:12px;border:1px solid rgba(255,255,255,0.03);backdrop-filter:blur(6px)}
-  .mini-panel h4{font-size:.95rem;margin-bottom:6px}
-  .mini-panel p{color:var(--muted);font-size:.9rem}
+  .meta-row{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+.mini-panel{
+  background:rgba(255,255,255,0.02);
+  border-radius:12px;
+  padding:12px;
+  border:1px solid rgba(255,255,255,0.03);
+  backdrop-filter:blur(6px);
+}
+.mini-panel h4{font-size:.95rem;margin-bottom:6px}
+.mini-panel p{color:var(--muted);font-size:.9rem}
 
   /* page sections below */
   section{padding:70px 0}
