@@ -1,1094 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PixelApe - Exclusive Pixel Art NFT Collection</title>
-    <style>
-        /* Modern Cyberpunk Inspired Styles */
-        /* Base styles - Dark Mode, Futuristic Font */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            /* Modern, stark font */
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        /* Import Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Montserrat:wght@300;400;700&display=swap');
-
-        body {
-            /* Dark, cool background */
-            background-color: #0d1117; 
-            color: #c9d1d9; /* Light grey text */
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* High contrast colors */
-        :root {
-            --primary-color: #00bcd4; /* Cyan/Teal - High-tech glow */
-            --secondary-color: #ff007f; /* Magenta/Pink - Cyberpunk accent */
-            --text-color: #c9d1d9;
-            --background-dark: #0d1117;
-            --background-light: #161b22;
-        }
-
-        /* Header image area */
-        .header-image {
-            width: 100%;
-            padding: 20px 0;
-            display: flex;
-            justify-content: flex-start;
-        }
-
-        .header-image img {
-            width: auto;
-            max-width: 600px;
-            height: auto;
-            max-height: 300px;
-            border: none;
-            box-shadow: none;
-            object-fit: contain;
-            /* Subtle neon glow */
-            filter: drop-shadow(0 0 5px var(--primary-color));
-        }
-
-        /* Hero section */
-        .hero {
-            padding: 80px 0 120px;
-            text-align: center;
-            background: linear-gradient(to bottom, var(--background-dark), var(--background-light));
-            position: relative;
-            overflow: hidden;
-            border-bottom: 2px solid var(--primary-color);
-        }
-
-        /* Grid pattern background effect (less distracting than SVG, uses CSS) */
-        .hero:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(0deg, transparent 95%, rgba(0, 188, 212, 0.1) 100%),
-                              linear-gradient(90deg, transparent 95%, rgba(0, 188, 212, 0.1) 100%);
-            background-size: 20px 20px;
-            z-index: 0;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            /* Futuristic, aggressive font for title */
-            font-family: 'Orbitron', sans-serif;
-            font-size: 64px;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            /* Stronger neon text shadow */
-            text-shadow: 0 0 10px var(--primary-color), 0 0 20px rgba(0, 188, 212, 0.5);
-            letter-spacing: 5px;
-            font-weight: 900;
-        }
-
-        .hero p {
-            font-size: 18px;
-            max-width: 900px;
-            margin: 0 auto 40px;
-            color: var(--text-color);
-            font-weight: 300;
-        }
-
-        /* Button Style - Neon Glow */
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: #ffffff;
-            padding: 15px 40px;
-            border: 2px solid var(--secondary-color);
-            border-radius: 5px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s;
-            /* Aggressive shadow */
-            box-shadow: 0 0 15px rgba(255, 0, 127, 0.5), 0 0 5px var(--secondary-color);
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn:before {
-            content: '>>>'; /* Little visual flare */
-            position: absolute;
-            top: 50%;
-            left: -100px;
-            transform: translateY(-50%);
-            width: 100px;
-            height: 100%;
-            background: none;
-            color: #ffffff;
-            font-size: 14px;
-            opacity: 0.8;
-            transition: all 0.5s;
-        }
-
-        .btn:hover:before {
-            left: calc(100% + 20px);
-        }
-
-        .btn:hover {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            box-shadow: 0 0 20px rgba(0, 188, 212, 0.7), 0 0 8px var(--primary-color);
-            transform: translateY(-2px) scale(1.02);
-            color: var(--background-dark);
-        }
-        
-        /* Secondary Button (Join Community) */
-        .hero .btn[style*="background-color: #4ecdc4"] {
-            background-color: transparent !important;
-            border-color: var(--primary-color) !important;
-            color: var(--primary-color) !important;
-            box-shadow: 0 0 15px rgba(0, 188, 212, 0.5), 0 0 5px var(--primary-color) !important;
-        }
-
-        .hero .btn[style*="background-color: #4ecdc4"]:hover {
-            background-color: var(--primary-color) !important;
-            color: var(--background-dark) !important;
-        }
-
-
-        /* NFT showcase section */
-        .nft-showcase {
-            padding: 100px 0;
-            background-color: var(--background-light);
-            border-bottom: 1px dashed var(--primary-color);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 32px;
-            color: var(--secondary-color);
-            text-shadow: 0 0 8px var(--secondary-color);
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-            text-transform: uppercase;
-        }
-
-        .section-title:after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background-color: var(--secondary-color);
-            box-shadow: 0 0 5px var(--secondary-color);
-            bottom: -15px;
-            left: 0;
-        }
-
-        .nft-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px;
-        }
-
-        .nft-card {
-            background-color: var(--background-dark);
-            border: 1px solid var(--primary-color);
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.4s, box-shadow 0.4s;
-            box-shadow: 0 0 10px rgba(0, 188, 212, 0.2);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .nft-card:before {
-            content: 'NFT-ID: ' attr(data-id);
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            color: var(--primary-color);
-            font-size: 10px;
-            font-family: 'Orbitron', sans-serif;
-            z-index: 2;
-        }
-
-        .nft-card:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 0 20px rgba(0, 188, 212, 0.7), 0 5px 15px rgba(0,0,0,0.5);
-            border-color: var(--secondary-color);
-        }
-
-        .nft-image {
-            width: 100%;
-            height: 250px;
-            margin-bottom: 20px;
-            image-rendering: pixelated;
-            border: 3px solid var(--secondary-color);
-            box-shadow: 0 0 8px rgba(255, 0, 127, 0.5);
-            position: relative;
-            z-index: 1;
-            background-size: cover;
-            background-position: center;
-            background-color: #000000;
-        }
-        
-        /* Placeholder styling */
-        .nft-image > div {
-            font-family: 'Orbitron', sans-serif;
-            text-shadow: 0 0 5px var(--primary-color);
-            display: none !important; /* Managed by JS, but hide by default for safety */
-        }
-
-        .nft-name {
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: var(--primary-color);
-            position: relative;
-            z-index: 1;
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-        }
-
-        .nft-id {
-            color: var(--text-color);
-            font-size: 14px;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 10px;
-        }
-
-        .nft-rarity {
-            margin-top: 15px;
-            padding: 8px 15px;
-            background-color: var(--secondary-color);
-            color: white;
-            font-size: 12px;
-            display: inline-block;
-            position: relative;
-            z-index: 1;
-            font-weight: bold;
-            letter-spacing: 1px;
-            box-shadow: 0 0 5px var(--secondary-color);
-        }
-
-        /* About section */
-        .about {
-            padding: 100px 0;
-            background-color: var(--background-dark);
-            border-bottom: 1px dashed var(--secondary-color);
-        }
-
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 80px;
-        }
-        
-        .about-text h2 {
-            margin-top: 0;
-        }
-
-        .about-text p {
-            margin-bottom: 15px;
-            font-weight: 300;
-            color: var(--text-color);
-        }
-
-        .about-image {
-            flex: 1;
-            height: 350px;
-            border: 4px solid var(--primary-color);
-            box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
-            image-rendering: pixelated;
-            background-color: #000000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            color: #666;
-            transition: all 0.5s;
-        }
-
-        /* Roadmap section */
-        .roadmap {
-            padding: 100px 0;
-            background-color: var(--background-light);
-            border-bottom: 1px dashed var(--primary-color);
-        }
-
-        .roadmap-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 50px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .roadmap-step {
-            display: flex;
-            align-items: flex-start;
-            gap: 30px;
-        }
-
-        .step-number {
-            background-color: var(--secondary-color);
-            color: #ffffff;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            flex-shrink: 0;
-            box-shadow: 0 0 10px rgba(255, 0, 127, 0.7);
-            border-radius: 50%;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 20px;
-        }
-
-        .step-content {
-            background-color: var(--background-dark);
-            padding: 25px;
-            border: 2px solid var(--primary-color);
-            flex: 1;
-            box-shadow: 0 0 10px rgba(0, 188, 212, 0.4);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-        
-        .roadmap-step:nth-child(even) .step-content {
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 10px rgba(255, 0, 127, 0.4);
-        }
-        
-        .step-content h3 {
-             color: var(--secondary-color);
-             font-family: 'Orbitron', sans-serif;
-             margin-bottom: 10px;
-             text-transform: uppercase;
-        }
-        
-        .step-content p {
-            color: var(--text-color);
-            font-weight: 300;
-        }
-
-        /* FAQ section */
-        .faq {
-            padding: 100px 0;
-            background-color: var(--background-dark);
-            border-bottom: 1px dashed var(--primary-color);
-        }
-
-        .faq-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .faq-section {
-            background-color: var(--background-light);
-            padding: 50px;
-            border: 4px solid var(--secondary-color);
-            box-shadow: 0 0 20px rgba(255, 0, 127, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .faq-section:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(255, 0, 127, 0.05) 0%, transparent 70%);
-            z-index: 0;
-        }
-
-        .faq-section h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 22px;
-            margin-bottom: 40px;
-            color: var(--primary-color);
-            text-shadow: 0 0 5px var(--primary-color);
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            text-transform: uppercase;
-        }
-
-        .faq-item {
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-            border: 1px solid var(--primary-color);
-            background-color: var(--background-dark);
-            transition: all 0.3s;
-        }
-
-        .faq-item:hover {
-            box-shadow: 0 0 10px var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        .faq-question {
-            font-weight: 700;
-            color: var(--primary-color);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            transition: all 0.3s;
-            padding: 18px 25px;
-            background-color: var(--background-dark);
-            text-transform: uppercase;
-            font-size: 16px;
-        }
-
-        .faq-question:hover {
-            color: var(--secondary-color);
-            background-color: #1a222e;
-        }
-
-        .faq-question:before {
-            content: '>'; /* Change to a simpler pointer */
-            margin-right: 15px;
-            color: var(--secondary-color);
-            font-size: 14px;
-            transition: transform 0.3s;
-            font-family: monospace;
-            font-weight: 900;
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-in-out;
-            color: var(--text-color);
-            padding: 0 25px;
-            background-color: var(--background-light);
-            font-weight: 300;
-        }
-
-        .faq-item.active .faq-question:before {
-            content: 'V'; /* Downward pointing icon */
-            transform: none; /* Reset transform as V is already pointing down */
-            color: var(--primary-color);
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-            padding: 15px 25px;
-            border-top: 1px solid var(--primary-color);
-        }
-
-        /* NFT search section */
-        .nft-search {
-            padding: 80px 0;
-            background-color: var(--background-light);
-            text-align: center;
-        }
-
-        .search-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 50px;
-            background-color: var(--background-dark);
-            border: 4px solid var(--primary-color);
-            box-shadow: 0 0 20px rgba(0, 188, 212, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .search-container:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(0, 188, 212, 0.05) 0%, transparent 70%);
-            z-index: 0;
-        }
-
-        .search-form {
-            display: flex;
-            gap: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .search-input {
-            flex: 1;
-            padding: 15px 20px;
-            border: 2px solid var(--primary-color);
-            background-color: var(--background-dark);
-            color: var(--text-color);
-            font-size: 18px;
-            outline: none;
-            transition: all 0.3s;
-            box-shadow: inset 0 0 5px rgba(0, 188, 212, 0.5);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .search-input:focus {
-            border-color: var(--secondary-color);
-            box-shadow: inset 0 0 8px var(--secondary-color);
-        }
-
-        .search-input::placeholder {
-            color: #555;
-        }
-
-        .search-btn {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-            box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .search-btn:hover {
-            background-color: var(--primary-color);
-            box-shadow: 0 0 15px rgba(0, 188, 212, 0.8);
-            transform: translateY(-2px) scale(1.05);
-            color: var(--background-dark);
-        }
-
-        .error-message {
-            color: var(--secondary-color);
-            margin-top: 20px;
-            font-weight: bold;
-            display: none;
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 0 5px rgba(255, 0, 127, 0.5);
-        }
-
-        /* Community section */
-        .community {
-            padding: 100px 0;
-            background-color: var(--background-dark);
-            text-align: center;
-        }
-        
-        .community p {
-            color: var(--text-color);
-            font-weight: 300;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .social-link {
-            display: inline-flex;
-            width: 70px;
-            height: 70px;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: transform 0.3s, filter 0.3s;
-            border-radius: 50%;
-            background-color: var(--background-light);
-            box-shadow: 0 0 10px var(--primary-color);
-        }
-
-        .social-link img {
-            width: 70%;
-            height: 70%;
-            object-fit: contain;
-            filter: brightness(1.5); /* Boost image contrast */
-        }
-
-        .social-link:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 0 20px var(--secondary-color);
-        }
-
-        /* Footer */
-        footer {
-            background-color: #000000;
-            padding: 40px 0;
-            text-align: center;
-            border-top: 4px solid var(--secondary-color);
-            color: var(--text-color);
-            font-size: 14px;
-        }
-
-        /* Responsive design */
-        @media (max-width: 992px) {
-            .about-content {
-                gap: 40px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 48px;
-            }
-            .section-title {
-                font-size: 28px;
-            }
-            .about-content {
-                flex-direction: column;
-                gap: 30px;
-            }
-            .about-image {
-                height: 250px;
-            }
-            .roadmap-step {
-                flex-direction: column;
-            }
-            .step-number {
-                align-self: flex-start;
-            }
-            .header-image {
-                justify-content: center;
-            }
-            .header-image img {
-                max-width: 90%;
-            }
-            .faq-section, .search-container {
-                padding: 30px;
-            }
-             .search-form {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-            .section-title {
-                font-size: 24px;
-            }
-            .btn {
-                padding: 12px 25px;
-                font-size: 16px;
-                margin: 5px 0 !important;
-            }
-            .hero .btn:last-child {
-                margin-left: 0 !important;
-            }
-            .social-links {
-                gap: 20px;
-            }
-            .social-link {
-                width: 50px;
-                height: 50px;
-            }
-            .search-input, .search-btn {
-                font-size: 16px;
-            }
-        }
-
-        /* Pixel animation - adjusted for new look */
-        @keyframes pixelate {
-            0% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.03) rotate(1deg); }
-            100% { transform: scale(1) rotate(0deg); }
-        }
-
-        .pixel-animation {
-            animation: pixelate 4s ease-in-out infinite;
-        }
-
-        /* Loading animation (spin remains the same, but colors change) */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(0, 188, 212, .3);
-            border-radius: 50%;
-            border-top-color: var(--primary-color);
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PixelApe – Cosmic Sci‑Fi Edition</title>
+<style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+    body{background:#03040b;color:#fff;overflow-x:hidden;position:relative;}
+
+    /* STARFIELD BACKGROUND */
+    body::before{
+        content:"";
+        position:fixed;
+        top:0;left:0;width:100%;height:100%;
+        background:radial-gradient(circle at center,#101225 0%,#03040b 70%);
+        z-index:-3;
+    }
+
+    /* Moving stars */
+    body::after{
+        content:"";
+        position:fixed;
+        top:0;left:0;width:200%;height:200%;
+        background:url('https://assets.codepen.io/1468070/stars.png');
+        animation: drift 120s linear infinite;
+        opacity:0.25;
+        z-index:-2;
+    }
+    @keyframes drift{100%{transform:translate(-20%,-20%) rotate(1deg);}}
+
+    /* Cosmic nebula */
+    .nebula{
+        position:fixed;
+        width:180%;height:180%;
+        left:-40%;top:-40%;
+        background:url('https://assets.codepen.io/1468070/nebula-purple.png') center/cover;
+        opacity:0.15;
+        mix-blend-mode:screen;
+        animation:spin 90s linear infinite;
+        z-index:-1;
+    }
+    @keyframes spin{100%{transform:rotate(360deg);}}
+
+    .container{width:90%;max-width:1300px;margin:auto;}
+
+    /* HEADER */
+    .header-image{padding:40px 0;text-align:left;}
+    .header-image img{width:260px;filter:drop-shadow(0 0 15px #6d5cff);}    
+
+    /* HERO */
+    .hero{
+        padding:180px 0 160px 0;
+        text-align:center;
+        position:relative;
+    }
+
+    .hero h1{
+        font-size:4.5rem;
+        font-weight:900;
+        background:linear-gradient(90deg,#8a7bff,#c09bff,#8a7bff);
+        background-size:200%;
+        -webkit-background-clip:text;
+        -webkit-text-fill-color:transparent;
+        animation:shine 6s linear infinite;
+        letter-spacing:6px;
+        text-shadow:0 0 35px rgba(180,140,255,0.45);
+    }
+    @keyframes shine{100%{background-position:200%;}}
+
+    .hero p{
+        max-width:850px;margin:25px auto 0;
+        font-size:1.15rem;color:#dcd7f7;line-height:1.8;
+    }
+
+    .btn{
+        display:inline-block;margin-top:40px;
+        padding:14px 32px;
+        background:#9f85ff;
+        color:#000;font-weight:700;border-radius:10px;
+        box-shadow:0 0 18px rgba(159,133,255,0.6);
+        transition:.35s;
+    }
+    .btn:hover{transform:translateY(-6px);box-shadow:0 0 26px rgba(159,133,255,0.9);}    
+
+    /* SECTION TITLE */
+    .section-title{
+        text-align:center;font-size:2.6rem;font-weight:800;margin-bottom:70px;
+        background:linear-gradient(90deg,#b793ff,#d6baff);
+        -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+        text-shadow:0 0 20px rgba(150,110,255,0.35);
+    }
+
+    /* NFT GRID */
+    .nft-showcase{padding:130px 0;}
+    .nft-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:45px;}
+    .nft-card{
+        padding:20px;background:rgba(40,35,65,0.4);
+        border:1px solid rgba(180,140,255,0.25);
+        border-radius:14px;backdrop-filter:blur(8px);
+        box-shadow:0 0 25px rgba(90,70,140,0.4);
+        transition:.35s;cursor:pointer;
+    }
+    .nft-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:0 0 40px rgba(150,110,255,0.6);}    
+
+    .nft-image{width:100%;height:220px;background-size:cover;background-position:center;border-radius:10px;border:2px solid #9f85ff;margin-bottom:15px;}
+    .nft-name{font-size:1.25rem;font-weight:700;margin-bottom:5px;}
+    .nft-id{color:#cdc5ff;font-size:.92rem;}
+    .nft-rarity{margin-top:14px;padding:6px 12px;background:#c0a2ff;color:#000;border-radius:8px;font-weight:700;display:inline-block;}
+
+    /* ABOUT */
+    .about{padding:130px 0;}
+    .about-content{display:flex;gap:60px;align-items:center;}
+    .about-text p{margin-bottom:22px;line-height:1.8;color:#e3ddff;}
+    .about-image{width:100%;height:360px;background-size:cover;background-position:center;border-radius:16px;border:2px solid #9f85ff;box-shadow:0 0 35px rgba(159,133,255,0.45);}    
+
+    /* ROADMAP */
+    .roadmap{padding:130px 0;}
+    .roadmap-steps{max-width:900px;margin:auto;display:flex;flex-direction:column;gap:45px;}
+    .roadmap-step{display:flex;gap:22px;}
+    .step-number{width:55px;height:55px;background:#b79cff;color:#000;font-weight:900;display:flex;align-items:center;justify-content:center;border-radius:12px;box-shadow:0 0 18px rgba(183,156,255,0.6);}    
+    .step-content{flex:1;padding:25px;background:rgba(40,35,65,0.45);border-radius:12px;border:1px solid rgba(200,170,255,0.3);backdrop-filter:blur(8px);}    
+
+    /* FAQ */
+    .faq{padding:130px 0;}
+    .faq-section{background:rgba(40,35,65,0.45);padding:40px;border-radius:14px;border:1px solid rgba(200,170,255,0.3);backdrop-filter:blur(8px);}    
+    .faq-item{margin-bottom:25px;padding-bottom:15px;border-bottom:1px solid rgba(255,255,255,0.12);cursor:pointer;}
+    .faq-question{font-weight:700;margin-bottom:10px;}
+    .faq-answer{display:none;color:#d8d3ff;line-height:1.7;}
+    .faq-item.active .faq-answer{display:block;}
+
+    /* SEARCH */
+    .nft-search{padding:130px 0;text-align:center;}
+    .search-container{background:rgba(40,35,65,0.45);padding:45px;border-radius:14px;border:1px solid rgba(200,170,255,0.25);max-width:800px;margin:auto;backdrop-filter:blur(8px);}    
+    .search-form{display:flex;gap:20px;}
+    .search-input{flex:1;padding:14px;border-radius:10px;border:2px solid #b79cff;background:#090a14;color:#fff;}
+    .search-btn{padding:14px 25px;background:#b79cff;border-radius:10px;color:#000;font-weight:800;}
+    .error-message{margin-top:15px;color:#ff6c6c;font-weight:700;display:none;}
+
+    /* COMMUNITY */
+    .community{padding:130px 0;text-align:center;}
+    .social-links{display:flex;justify-content:center;gap:45px;margin-top:30px;}
+    .social-link img{width:65px;filter:drop-shadow(0 0 15px #b79cff);transition:0.3s;}
+    .social-link:hover img{transform:translateY(-6px);filter:drop-shadow(0 0 25px #d6baff);}    
+
+    footer{padding:40px 0;text-align:center;color:#aaa;border-top:1px solid rgba(200,170,255,0.25);}    
+
+    @media(max-width:900px){.about-content{flex-direction:column;}.hero h1{font-size:3rem;}}
+</style>
 </head>
 <body>
+<div class="nebula"></div>
+<div class="container header-image"><img src="image/logo.png"></div>
+
+<section class="hero" id="home">
     <div class="container">
-        <div class="header-image">
-            <img src="image/logo.png" alt="PixelApe Logo" onerror="this.src='
-            image/logo.png'">
-        </div>
+        <h1>PIXELAPE</h1>
+        <p>Enter a deep‑space realm of digital rarity — a cosmic NFT universe of 9,888 PixelApes powered by futuristic design and on‑chain identity.</p>
+        <a class="btn" href="#nfts">Browse Collection</a>
+        <a class="btn" style="margin-left:10px;background:#c8b4ff;" href="#community">Join Community</a>
     </div>
+</section>
 
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1>PIXELAPE</h1>
-                <p>Welcome to PixelApe, an **exclusive collection of 9,888 uniquely generated pixel art apes** living on the Base blockchain. Each PixelApe is meticulously crafted through a sophisticated algorithmic process, combining over 170 hand-drawn traits across 8 categories including fur, eyes, mouth, headwear, clothing, and accessories. No two PixelApes are identical, with varying rarity levels that make some apes exceptionally rare and valuable. Our collection pays homage to the classic pixel art era while embracing the future of digital ownership through blockchain technology. By owning a PixelApe, you're not just acquiring a digital asset - you're joining an **exclusive community of collectors**, gaining access to future airdrops, and participating in the evolution of the PixelApe ecosystem.</p>
-                <a href="#nfts" class="btn">Browse Collection</a>
-                <a href="#community" class="btn" style="background-color: #4ecdc4; margin-left: 15px;">Join Community</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="nft-showcase" id="nfts">
-        <div class="container">
-            <h2 class="section-title">FEATURED PIXELAPES</h2>
-            <div class="nft-grid">
-                </div>
-        </div>
-    </section>
-
-    <section class="about" id="about">
-        <div class="container">
-            <h2 class="section-title">ABOUT PIXELAPE</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>PixelApe represents the convergence of nostalgic pixel art aesthetics with **cutting-edge blockchain technology**. Our project draws inspiration from the classic 8-bit and 16-bit gaming era, reimagining digital art ownership for the Web3 generation.</p>
-                    <br>
-                    <p>Each PixelApe NFT is a unique digital collectible with **provable scarcity and ownership** secured by the Ethereum blockchain. Our collection features a diverse range of ape characters, from common forest dwellers to legendary golden apes with ultra-rare attributes.</p>
-                    <br>
-                    <p>Beyond being digital art pieces, PixelApes serve as **membership tokens** for our growing community. Holders gain exclusive access to community events, future project developments, and special utility within the PixelApe ecosystem we're building.</p>
-                </div>
-                <div class="about-image pixel-animation" style="background-image: url('image/you.jpg'); background-size: cover; background-position: center;">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="roadmap" id="roadmap">
-        <div class="container">
-            <h2 class="section-title">PROJECT ROADMAP</h2>
-            <div class="roadmap-steps">
-                <div class="roadmap-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Genesis Launch</h3>
-                        <p>Launching on OpenSea in November 2025, actively marketing to complete the minting process as quickly as possible.</p>
-                    </div>
-                </div>
-                <div class="roadmap-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Community Growth</h3>
-                        <p>Launch of PixelApe DAO for community governance, exclusive merchandise store, and first airdrop to early supporters and holders.</p>
-                    </div>
-                </div>
-                <div class="roadmap-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Ecosystem Expansion</h3>
-                        <p>Introduction of PixelApe staking rewards, collaboration with other NFT projects, and development of interactive experiences for holders.</p>
-                    </div>
-                </div>
-                <div class="roadmap-step">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Further market expansion</h3>
-                        <p>Collaborate with more physical manufacturers and license our IP to them for producing various merchandise, including but not limited to: clothing, shoes, hats, toys, accessories, bags, and dolls!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="faq" id="faq">
-        <div class="container">
-            <h2 class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
-            <div class="faq-container">
-                <div class="faq-section">
-                    <div class="faq-item active">
-                        <div class="faq-question">What is PixelApe?</div>
-                        <div class="faq-answer">
-                            PixelApe is a collection of 10,000 unique pixel art ape NFTs on the Ethereum blockchain. Each NFT is algorithmically generated from over 170 hand-drawn traits, creating a diverse and visually striking collection that pays homage to classic pixel art aesthetics.
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">How can I mint a PixelApe?</div>
-                        <div class="faq-answer">
-                            You can mint directly from our website during the public sale. Connect your Ethereum wallet (like MetaMask), ensure you have enough ETH for the mint price and gas fees, and click the mint button. Presale participants will need to be on the whitelist.
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">What is the utility of owning a PixelApe?</div>
-                        <div class="faq-answer">
-                            PixelApe holders gain access to exclusive community events, future airdrops, governance rights in our DAO, and special utilities within the PixelApe ecosystem we're building. Ownership also grants commercial rights to your specific PixelApe.
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">Are there any rarity traits?</div>
-                        <div class="faq-answer">
-                            Yes! Each PixelApe has varying rarity levels. Some traits like golden fur, laser eyes, crown headwear, and special backgrounds are extremely rare and highly sought after by collectors. The rarity distribution is transparent and verifiable on-chain.
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">What is the secondary market royalty?</div>
-                        <div class="faq-answer">
-                            We have set a 5% royalty on all secondary sales. This helps fund ongoing development, community initiatives, marketing efforts, and future project expansions while ensuring the long-term sustainability of the PixelApe ecosystem.
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">Where can I view my PixelApe after minting?</div>
-                        <div class="faq-answer">
-                            After minting, your PixelApe will appear in your connected wallet and on major NFT marketplaces like OpenSea. You can also view your collection directly on our website by connecting your wallet to the "My Collection" section.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="nft-search" id="search">
+<section class="nft-showcase" id="nfts">
     <div class="container">
-        <h2 class="section-title">SEARCH FOR YOUR PIXELAPE</h2>
-        <div class="search-container">
-            <form class="search-form" id="nftSearchForm">
-                <input type="text" class="search-input" id="nftIdInput" placeholder="Enter NFT ID (1-9888)" maxlength="4">
-                <button type="submit" class="search-btn">Access Data</button>
-            </form>
-            <div class="error-message" id="errorMessage">
-                Please enter a valid number between 1 and 9888!
+        <h2 class="section-title">FEATURED PIXELAPES</h2>
+        <div class="nft-grid"></div>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="container">
+        <h2 class="section-title">ABOUT PIXELAPE</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>PixelApe exists at the intersection of pixel artistry and cosmic imagination — a futuristic collectible identity system shaped for the next era of Web3.</p>
+                <p>9,888 generative apes, formed from 170+ traits, preserved on‑chain and designed as long‑term digital assets.</p>
+                <p>Ownership grants community access, ecosystem utilities, exclusive drops, and expanding metaverse integrations.</p>
             </div>
+            <div class="about-image" style="background-image:url('image/you.jpg');"></div>
         </div>
     </div>
 </section>
 
-    <section class="community" id="community">
-        <div class="container">
-            <h2 class="section-title">JOIN THE BANANA BUNCH</h2>
-            <p>Connect with fellow PixelApe enthusiasts, participate in exclusive events, and stay updated on the latest project developments.</p>
-            <div class="social-links">
-                <a href="https://x.com/pixelapespace" class="social-link" title="Twitter" target="_blank">
-                    <img src="image/x.png" alt="Twitter">
-                </a>
-                <a href="https://t.me/pixelapenft" class="social-link" title="Telegram" target="_blank">
-                    <img src="image/t.png" alt="Telegram">
-                </a>
-            </div>
+<section class="roadmap" id="roadmap">
+    <div class="container">
+        <h2 class="section-title">PROJECT ROADMAP</h2>
+        <div class="roadmap-steps">
+            <div class="roadmap-step"><div class="step-number">1</div><div class="step-content"><h3>Genesis Launch</h3><p>Launch on OpenSea with full cosmic branding and community ignition.</p></div></div>
+            <div class="roadmap-step"><div class="step-number">2</div><div class="step-content"><h3>Community Growth</h3><p>DAO formation, holder airdrops, and exclusive digital events.</p></div></div>
+            <div class="roadmap-step"><div class="step-number">3</div><div class="step-content"><h3>Ecosystem Expansion</h3><p>Staking utilities, cosmic collaborations, metaverse identity integration.</p></div></div>
+            <div class="roadmap-step"><div class="step-number">4</div><div class="step-content"><h3>Market Extensions</h3><p>Physical collectibles, brand licensing, and inter‑project partnerships.</p></div></div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 PixelApe NFT Collection. All rights reserved. | Genesis Protocol v1.0</p>
+<section class="faq" id="faq">
+    <div class="container">
+        <h2 class="section-title">FAQ</h2>
+        <div class="faq-section">
+            <div class="faq-item active"><div class="faq-question">What is PixelApe?</div><div class="faq-answer">A 9,888‑piece generative cosmic pixel art NFT collection.</div></div>
+            <div class="faq-item"><div class="faq-question">How can I mint?</div><div class="faq-answer">Minting opens during the official launch phase via connected Web3 wallet.</div></div>
+            <div class="faq-item"><div class="faq-question">What utilities are included?</div><div class="faq-answer">DAO access, cosmic perks, drops, and future metaverse features.</div></div>
+            <div class="faq-item"><div class="faq-question">Are traits rare?</div><div class="faq-answer">Yes — rarity is algorithmically distributed and fully verifiable.</div></div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script>
-    // All original JavaScript functionality remains unchanged.
-    // Generate 8 unique random NFT IDs (1-9888)
-    function generateRandomNFTs(count, maxId) {
-        const nfts = new Set();
-        while (nfts.size < count) {
-            const randomId = Math.floor(Math.random() * maxId) + 1;
-            nfts.add(randomId);
-        }
-        return Array.from(nfts);
-    }
+<section class="nft-search" id="search">
+    <div class="container">
+        <h2 class="section-title">SEARCH FOR YOUR PIXELAPE</h2>
+        <div class="search-container">
+            <form class="search-form" id="nftSearchForm">
+                <input id="nftIdInput" class="search-input" placeholder="Enter NFT number (1-9888)" maxlength="4" />
+                <button class="search-btn">Search</button>
+            </form>
+            <div id="errorMessage" class="error-message">Please enter a valid number between 1 and 9888!</div>
+        </div>
+    </div>
+</section>
 
-    // Generate rarity based on ID (Mockup function)
-    function getRarity(id) {
-        // Simple mock rarity logic for visual variation
-        if (id % 100 === 0) return 'Legendary';
-        if (id % 50 === 0) return 'Epic';
-        if (id % 10 === 0) return 'Rare';
-        if (id % 5 === 0) return 'Uncommon';
-        return 'Common';
-    }
+<section class="community" id="community">
+    <div class="container">
+        <h2 class="section-title">JOIN THE COMMUNITY</h2>
+        <p>Connect with explorers across the PixelApe galaxy.</p>
+        <div class="social-links">
+            <a class="social-link" href="https://x.com/pixelapespace" target="_blank"><img src="image/x.png"></a>
+            <a class="social-link" href="https://t.me/pixelapenft" target="_blank"><img src="image/t.png"></a>
+        </div>
+    </div>
+</section>
 
-    // Generate name based on ID (Mockup function)
-    function getName(id) {
-        const rarity = getRarity(id);
-        if (rarity === 'Legendary') return 'Alpha Ape Protocol';
-        if (rarity === 'Epic') return 'Cyber Gorilla Unit';
-        if (rarity === 'Rare') return 'Pixel Samurai';
-        return 'Pixel Ape';
-    }
+<footer><div class="container">© 2025 PixelApe Cosmic Collection</div></footer>
 
-    // Dynamically generate NFT cards
-    const nftGrid = document.querySelector('.nft-grid');
-    const randomNFTs = generateRandomNFTs(8, 9888);
-    
-    randomNFTs.forEach(nftId => {
-        const nftCard = document.createElement('div');
-        nftCard.className = 'nft-card';
-        nftCard.dataset.id = nftId;
-        
-        const rarity = getRarity(nftId);
-        const name = getName(nftId);
-        
-        // Set different background colors based on rarity
-        const rarityColors = {
-            'Common': '#161b22', /* Dark for common */
-            'Uncommon': '#1e2837', 
-            'Rare': '#34495e',
-            'Epic': '#ff007f', /* Magenta accent */
-            'Legendary': '#00bcd4' /* Cyan accent */
-        };
-        
-        // Fix image path: use details/random_number/random_number.png
-        nftCard.innerHTML = `
-            <div class="nft-image" style="background-image: url('details/${nftId}/${nftId}.png'); background-color: ${rarityColors[rarity]}; border-color: ${rarityColors[rarity] === '#161b22' ? 'var(--primary-color)' : rarityColors[rarity]};">
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: bold; text-shadow: 0 0 5px var(--primary-color); display: none;">#${nftId}</div>
-            </div>
-            <div class="nft-name">${name}</div>
-            <div class="nft-id">#${nftId}</div>
-            <div class="nft-rarity" style="background-color: ${rarityColors[rarity] === '#161b22' ? 'var(--primary-color)' : rarityColors[rarity]}; box-shadow: 0 0 5px ${rarityColors[rarity] === '#161b22' ? 'var(--primary-color)' : rarityColors[rarity]};">${rarity} - View Details</div>
-        `;
-        
-        nftGrid.appendChild(nftCard);
-    });
+<script>
+function generateRandomNFTs(count,maxId){const s=new Set();while(s.size<count)s.add(Math.floor(Math.random()*maxId)+1);return [...s];}
+function getRarity(id){return 'Pixel Ape';}
+function getName(id){return 'Pixel Ape';}
+const nftGrid=document.querySelector('.nft-grid');
+const randomNFTs=generateRandomNFTs(8,9888);
+randomNFTs.forEach(id=>{
+ const card=document.createElement('div');card.className='nft-card';card.dataset.id=id;
+ card.innerHTML=`<div class="nft-image" style="background-image:url('details/${id}/${id}.png')"></div>
+ <div class="nft-name">Pixel Ape</div>
+ <div class="nft-id">#${id}</div>
+ <div class="nft-rarity">View Details</div>`;
+ nftGrid.appendChild(card);
+});
 
-    // Add click event handling
-    document.querySelectorAll('.nft-card').forEach(card => {
-        card.addEventListener('click', function() {
-            const nftId = this.dataset.id;
-            // Fix click navigation path
-            window.location.href = `details/${nftId}/`;
-        });
-    });
-
-    // FAQ interaction functionality
-    document.querySelectorAll('.faq-item').forEach(item => {
-        const question = item.querySelector('.faq-question');
-        question.addEventListener('click', function() {
-            // Close other open FAQs
-            document.querySelectorAll('.faq-item').forEach(otherItem => {
-                if (otherItem !== item && otherItem.classList.contains('active')) {
-                    otherItem.classList.remove('active');
-                }
-            });
-            
-            // Toggle current FAQ
-            item.classList.toggle('active');
-        });
-    });
-
-    // Add simple scroll animation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if(targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if(targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // Image loading error handling
-    document.querySelector('.header-image img').addEventListener('error', function() {
-        console.log('Logo image not found');
-    });
-
-    // NFT image loading error handling - show placeholder and better error handling
-    document.querySelectorAll('.nft-image').forEach(img => {
-        // Create an image element to listen for the load/error events on the background image
-        const imgElement = new Image();
-        const styleAttr = img.style.backgroundImage;
-        const urlMatch = styleAttr.match(/url\(['"]?(.*?)['"]?\)/);
-        const imageUrl = urlMatch ? urlMatch[1] : '';
-
-        // Extract NFT ID from parent
-        const nftId = img.parentElement.dataset.id;
-
-        // Find the placeholder div inside the nft-image
-        const placeholder = img.querySelector('div');
-
-        imgElement.onload = function() {
-            console.log(`NFT image details/${nftId}/${nftId}.png loaded successfully`);
-            if (placeholder) {
-                placeholder.style.display = 'none';
-            }
-        };
-
-        imgElement.onerror = function() {
-            console.log(`NFT image details/${nftId}/${nftId}.png not found`);
-            
-            // Show placeholder text
-            if (placeholder) {
-                placeholder.textContent = `NFT #${nftId} - DATA OFFLINE`;
-                placeholder.style.display = 'block';
-            }
-            
-            // Remove background image but keep background color
-            img.style.backgroundImage = 'none';
-        };
-
-        // Start loading the image
-        if (imageUrl) {
-            imgElement.src = imageUrl;
-        } else {
-            // Handle case where no image URL was found in style (e.g., initial background-color only)
-            imgElement.onerror();
-        }
-    });
-
-
-    // NFT search functionality
-    const nftSearchForm = document.getElementById('nftSearchForm');
-    const nftIdInput = document.getElementById('nftIdInput');
-    const errorMessage = document.getElementById('errorMessage');
-
-    // Limit input field to numbers only
-    nftIdInput.addEventListener('input', function() {
-        // Remove non-numeric characters
-        this.value = this.value.replace(/[^0-9]/g, '');
-        
-        // Hide error message
-        errorMessage.style.display = 'none';
-    });
-
-    // Handle form submission
-    nftSearchForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const nftId = parseInt(nftIdInput.value);
-        
-        // Validate input
-        if (isNaN(nftId) || nftId < 1 || nftId > 9888) {
-            errorMessage.style.display = 'block';
-            return;
-        }
-        
-        // Navigate to NFT details page
-        window.location.href = `details/${nftId}/`;
-    });
-</script>
-</body>
-</html>
+document.querySelectorAll('.nft-card').forEach(c=>c.onclick=()=>location.href=`details/${c.dataset.id}/`);
+document.querySelectorAll('.faq-item').forEach(i=>i.onclick=()=>i.classList.toggle('active'));
+const form=document.getElementById('nftSearchForm');
+const input=document.getElementById('nftIdInput');
+const error=document.getElement
